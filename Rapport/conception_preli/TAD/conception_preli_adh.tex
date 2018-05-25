@@ -1,0 +1,56 @@
+ 
+\begin{algorithme}
+
+\signaturefonction 
+{ADH\_creerArbreDeHuffmanVide}
+{}
+{ADH\_arbreDeHuffman}
+
+\signaturefonction 
+{ADH\_creerArbreDeHuffman}
+{octetAAjouter : octet, ponderation : \naturel}
+{ADH\_arbreDeHuffman}
+
+\signaturefonction 
+{ADH\_estUneFeuille}
+{arbre : ADH\_arbreDeHuffman}
+{\booleen}
+
+\signaturefonction 
+{ADH\_obtenirPere}
+{arbre : ADH\_arbreDeHuffman}
+{ADH\_valeurRacine}
+
+\signaturefonction 
+{ADH\_obtenirFilsD/G}
+{arbre : ADH\_arbreDeHuffman}
+{ADH\_arbreDeHuffman}
+
+\signaturefonction 
+{ADH\_estVide}
+{arbre : ADH\_arbreDeHuffman}
+{\booleen}
+
+\signaturefonction 
+{ADH\_creerRacine}
+{octetAAjoute: Octet, ponderation : Entier}
+{ADH\_Racine}
+
+\signaturefonction 
+{ADH\_fusionnerArbreDeHuffman}
+{arbre1, arbre2 : ADH\_arbreDeHuffman}
+{ADH\_arbreDeHuffman}
+
+\signaturefonction 
+{ADH\_comparerArbreDeHuffman}
+{arbre1, arbre2 : ADH\_arbreDeHuffman}
+{\booleen}
+
+\signatureProcedure
+{FDP\_supprimerRacine}
+{\paramEntreeSortie{arbreDeHuffman}}
+
+\signatureProcedure
+{FDP\_supprimer}
+{\paramEntreeSortie{arbreDeHuffman}}
+\end{algorithme}

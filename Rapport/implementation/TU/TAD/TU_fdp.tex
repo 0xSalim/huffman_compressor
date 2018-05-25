@@ -1,0 +1,103 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+ void TU_fileVide (void)
+{
+  CU_ASSERT_TRUE(FDP_estVide(FDP_creerVide()));
+}
+
+void TU_estVide_casVide(void)
+{
+  CU_ASSERT_TRUE(FDP_estVide(FDP_creerVide()));
+}
+
+void TU_estVide_casNonVide(void)
+{
+  FDP_FileDePriorite f=FDP_creerVide();
+  ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(creerOctet(),8);
+  
+  FDP_insererItem(arbre1,&f,ADHAD_copierArbre);
+  ADH_supprimerArbre(&arbre1);
+  
+  CU_ASSERT_TRUE(!FDP_estVide(f));
+  FDP_supprimer(&f,ADHAD_desallouerArbre);
+}
+
+void TU_defiler_taille1(void)
+{
+  FDP_FileDePriorite f=FDP_creerVide();
+  ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(creerOctet(),8);
+  FDP_insererItem(arbre1,&f,ADHAD_copierArbre);
+  ADH_supprimerArbre(&arbre1);
+  FDP_defiler(&f, ADHAD_desallouerArbre);
+  CU_ASSERT_TRUE(FDP_estVide(f));
+  
+  FDP_supprimer(&f,ADHAD_desallouerArbre);
+  
+}
+
+void TU_defiler_taille2(void)
+{
+  FDP_FileDePriorite f=FDP_creerVide();
+  ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(creerOctet(),8);
+  ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(creerOctet(),9);
+  FDP_insererItem(arbre1,&f,ADHAD_copierArbre);
+  FDP_insererItem(arbre2,&f,ADHAD_copierArbre);
+  FDP_defiler(&f,ADHAD_desallouerArbre);
+  CU_ASSERT_TRUE(ADH_comparerArbreDeHuffman(FDP_obtenirTete(f), arbre1));
+  FDP_defiler(&f,ADHAD_desallouerArbre);
+  ADH_supprimerArbre(&arbre1);
+  ADH_supprimerArbre(&arbre2);
+}
+
+void TU_inserer_casVide(void)
+{
+	ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(creerOctet(),8);
+	FDP_FileDePriorite f=FDP_creerVide();
+  	FDP_insererItem(arbre1,&f,ADHAD_copierArbre);
+	int a=ADH_comparerArbreDeHuffman(FDP_obtenirTete(f),arbre1);
+	CU_ASSERT_TRUE(a);
+	FDP_defiler(&f,ADHAD_desallouerArbre);
+	ADH_supprimerArbre(&arbre1);
+}
+
+void TU_inserer_casNonVide(void)
+{
+	ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(creerOctet(),8);
+	ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(creerOctet(),5);
+	FDP_FileDePriorite f=FDP_creerVide();
+  	FDP_insererItem(arbre1,&f,ADHAD_copierArbre);
+  	FDP_insererItem(arbre2,&f,ADHAD_copierArbre);
+	int a=ADH_comparerArbreDeHuffman(FDP_obtenirTete(f),arbre2);
+	CU_ASSERT_TRUE(a);
+	FDP_supprimer(&f,ADHAD_desallouerArbre);
+	ADH_supprimerArbre(&arbre1);
+	ADH_supprimerArbre(&arbre2);
+}
+
+void TU_obtenirTete(void)
+{
+	ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(creerOctet(),8);
+	FDP_FileDePriorite f=FDP_creerVide();
+  	FDP_insererItem(arbre1,&f,ADHAD_copierArbre);
+	int a=ADH_comparerArbreDeHuffman(FDP_obtenirTete(f),arbre1);
+	CU_ASSERT_TRUE(a);
+	FDP_defiler(&f,ADHAD_desallouerArbre);
+	ADH_supprimerArbre(&arbre1);
+}
+
+void TU_longueur_casVide(void)
+{
+	FDP_FileDePriorite f=FDP_creerVide();
+	CU_ASSERT_TRUE(FDP_longueur(f)==0);
+}
+
+void TU_longueur_casGeneral(void)
+{
+	FDP_FileDePriorite f=FDP_creerVide();
+	FDP_insererItem(ADH_creerArbreDeHuffmanVide(), &f, ADHAD_copierArbre);
+	CU_ASSERT_TRUE(FDP_longueur(f)==1);
+	FDP_supprimer(&f,ADHAD_desallouerArbre);
+}
+
+\end{minted}
+
+ 

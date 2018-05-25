@@ -1,0 +1,22 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+#include "genererTDCaPartirDeStats.h"
+
+TableDeCodage genererTableDeCodageAPartirDeStats(S_Statistiques stats){
+
+	FDP_FileDePriorite file;
+	ADH_arbreDeHuffman arbre;
+	TableDeCodage table=tableDeCodageVide();
+
+	file=genererFileDePriorite(stats,1);
+
+	arbre=genererArbreDeHuffman(&file,ADHAD_copierArbre);
+	
+	FDP_supprimer(&file,ADHAD_desallouerArbre);
+	
+	table=genererTDCaPartirDeADH(arbre);
+	ADH_supprimerArbre(&arbre);
+	return(table);
+}
+
+\end{minted}
+ 

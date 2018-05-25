@@ -1,0 +1,32 @@
+
+%genererFDP
+
+\begin{algorithme}
+\fonction
+{genererFileDePriorite}
+{stat : Statistiques, param : \booleen}
+{FDP\_FileDePriorite}
+{fdp : FDP\_FileDePriorite,
+listeTemp : Liste Chainee,
+nb : \entier,
+adh : ADH\_arbreDeHuffman,
+ponderation : \entier,
+oct : octet}
+{
+  \affecter{fdp}{FDP\_creerVide()}
+  \affecter{listeTemp}{obtenirLesStats(stats)}
+  \affecter{nb}{obtenirTaille(stats)}
+  \tantque{non(S\_estVide(stat))}
+      {
+        \affecter{oct}{S\_obtenirOctet(stats)}
+        \affecter{ponderation}{nombreOccurencesItem(stats,oct,comparerBit)}
+        \instruction{obtenirStatSuivante(stats)}
+        \affecter{racine}{ADH\_creerArbreDeHuffman(oct,ponderation)}
+        \instruction{FDP\_insererItem(adh,fdp,param)}
+      }
+  \instruction{fixerLesStats(stats,listeTemp)}
+  \affecter{stats.taille}{nb}
+  \retourner{fdp}
+}
+
+\end{algorithme}

@@ -1,0 +1,19 @@
+ 
+\begin{algorithme}
+
+\signaturefonction 
+{ADH\_creerRacine}
+{octetAAjoute: Octet, ponderation : Entier}
+{ADH\_Racine}
+
+\signaturefonction 
+{ADH\_fusionnerArbreDeHuffman}
+{arbre1, arbre2 : ADH\_arbreDeHuffman}
+{ADH\_arbreDeHuffman}
+
+\signaturefonction 
+{ADH\_comparerArbreDeHuffman}
+{arbre1, arbre2 : ADH\_arbreDeHuffman}
+{\booleen}
+
+\end{algorithme}

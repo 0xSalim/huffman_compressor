@@ -1,0 +1,23 @@
+
+%decompresser
+
+\begin{algorithme}
+\procedure
+{decompresser}
+{\paramEntree{fichierCompresse : FichierBinaire, }\paramSortie{fichierDecompresse : FichierBinaire}}
+{monEnTete : enTete, tdc : maFile : File de Priorite, monArbre : Arbre de Huffman, taille : \entier}
+{
+\affecter{taille}{0}
+\instruction{FB\_deplacerCurseur(fichierCompresse,0)}
+\instruction{FB\_deplacerCurseur(fichierDecompresse,0)}
+\instruction{FB\_deplacerCurseurPourTrouverTaille(fichierCompresse)}
+\instruction{FB\_lireGrosNaturel(fichierCompresse,taille)}
+\instruction{FB\_deplacerCurseur(fichierCompresse,0)}
+\affecter{monEnTete}{recupererEnTete(fichierCompresse,copierDonneeNoeud,comparerDonneeNoeud)}
+\affecter{maFile}{genererFileDePriorite(monEnTete.lesStats)}
+\affecter{monArbre}{genererArbreDeHuffman(maFile, copierArbre)}
+
+}
+
+
+\end{algorithme}

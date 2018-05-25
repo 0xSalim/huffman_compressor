@@ -1,0 +1,26 @@
+
+#include "compresser.h"
+
+void compresser(FichierBinaire ficSource, FichierBinaire* dest){
+    S_Statistiques stats;
+    TableDeCodage tdc;
+    FB_deplacerCurseur(&ficSource,0);
+    FB_deplacerCurseur(dest,0);
+    
+    stats=genererStats(ficSource);   /// La on est a la fin du fichier!!
+    tdc=genererTableDeCodageAPartirDeStats(stats);
+    
+    FB_deplacerCurseur(&ficSource,0);  /// Donc retour au début pour relire le fichier et le compresser!
+    ecrireFichierAvecEnTete(ficSource, dest, tdc,&stats);    
+}
+
+void ecrireFichierAvecEnTete(FichierBinaire ficSource, FichierBinaire* ficDestination, TableDeCodage tdc, S_Statistiques *stats){
+    unsigned long long nb=0;
+    
+    ecrireEnTete(ficDestination,stats);
+    ecrireCodeBinaire(ficDestination,ficSource,tdc,&nb);
+    FB_ecrireGrosNaturel(ficDestination,nb); /// On ecrit en fait le nombre de bits à la fin du fichier.
+	printf("\n%s %llu","taille significative en bit du fichier : ",nb);
+
+	
+}

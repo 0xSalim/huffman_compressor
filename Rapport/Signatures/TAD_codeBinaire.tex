@@ -1,0 +1,36 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{url}
+\usepackage{algorithmeUTF8}
+
+\begin{document}
+\begin{algorithme}
+\small
+	\signaturefonction{créerFichierBinaire}{}{Fichier Binaire}
+
+	\signatureprocedure{ecrireCodeBinaire}{
+	\paramEntree{tableDeCodage : Table De Codage , ficherACompresser : Fichier Texte }
+	\paramSortie{   erreur : \booleen ,  fichierCode : Fichier Binaire,  valeur : \naturel}}
+
+	\signaturefonction{obtenirCode}{tableDeCodage : Table De Codage, octetRechercher : Octet}{Code Binaire}
+
+	\signaturefonction{finFichier}{fichierAComprésser : Fichier Texte, position : NaturelNonNul}{\booleen}
+
+	\signaturefonction{lireOctet}{fichierAComprésser : Fichier texte, curseur : \naturel}{Octet}
+
+	\signaturefonction{coder}{tableDeCodage : Table De Codage, octetACoder : Octet}{Code Binaire}
+
+	\signatureprocedure{ecrireCodeDansFichierBinaire}{
+	\paramEntreeSortie{fichierBinaire : Fichier Binaire, curseur : \naturel,}
+	\paramEntree{codeAEcrire : Code Binaire}}
+	\signaturefonction{obtenirIemeBitCodeBinaire}{code : Code Binaire, i :NaturelNonNul}{Bit}
+	\signaturefonction{obtenirLongueur}{code : Code Binaire}{NaturelNonNul}
+	\signaturefonction{creerCodeBinaireVide}{}{Code Binaire}
+	\signaturefonction{ajouterBit}{code : Code Binaire, bitAAjouter : Bit, position : \naturel}{Code Binaire}
+	\signaturefonction{supprimerBit}{code : Code Binaire, position : \naturel}{Code Binaire}
+
+\end{algorithme}
+\end{document}
+		

@@ -1,0 +1,33 @@
+
+	\begin{tad}
+	\tadNom{TableDeCodage}
+	\tadParametres{element}
+	\tadDependances{\booleen,CodeBinaire}
+	\begin{tadOperations}{TableDeCodage}
+		\tadOperation{tableDeCodageVide}{}{\tadUnParam{TableDeCodage}}
+		\tadOperation{ajouterElement}{\tadDeuxParams{TableDeCodage}{element}}{\tadUnParam{TableDeCodage}}
+		\tadOperation{fixerCodeElement}{\tadTroisParams{TableDeCodage}{element}{CodeBinaire}}{\tadUnParam{TableDeCodage}}
+		\tadOperation{supprimerElement}{\tadDeuxParams{TableDeCodage}{element}}{\tadUnParam{TableDeCodage}}
+		\tadOperation{estPresentElement}{\tadDeuxParams{TableDeCodage}{element}}{\tadUnParam{Booleen}}
+		\tadOperation{estPresentCodeBinaire}{\tadDeuxParams{TableDeCodage}{CodeBinaire}}{\tadUnParam{Booleen}}
+		\tadOperation{obtenirCode}{\tadDeuxParams{TableDeCodage}{element}}{\tadUnParam{CodeBinaire}}
+		\tadOperation{obtenirElement}{\tadDeuxParams{TableDeCodage}{CodeBinaire}}{\tadUnParam{element}}
+	\end{tadOperations}
+	\begin{tadSemantiques}{TableDeCodage}
+		\tadSemantique{ajouterElement}{Ajoute l'element à la table de codage (il n'a alors pas de code binaire correspondant)}
+		\tadSemantique{fixerCodeElement}{Fait correspondre le code binaire en paramètre avec l'élement en paramètre}
+		\tadSemantique{supprimerElement}{Supprime l'élement et le code binaire associé}
+		\tadSemantique{obtenirCode}{renvoie le code binaire correspondant à l'élement}
+		\tadSemantique{obtenirElement}{renvoie l'élément correspondant au code binaire}
+	\end{tadSemantiques}
+	\begin{tadPreconditions}{TableDeCodage}
+		\tadPrecondition{obtenirCode(tdc,e)}{estPresentElement(tdc,e)}
+		\tadPrecondition{obtenirElement(tdc,cb)}{estPresentCodeBinaire(tdc,cb)}
+		\tadPrecondition{ajouterElement(tdc,e)}{non(estPresentElement(tdc,e))}
+		\tadPrecondition{fixerCodeElement(tdc,e,cb)}{estPresentElement(tdc,e)}
+		\tadPrecondition{supprimerElement(tdc,e)}{estPresentElement(tdc,e)}
+	\end{tadPreconditions}
+\end{tad}
+
+
+

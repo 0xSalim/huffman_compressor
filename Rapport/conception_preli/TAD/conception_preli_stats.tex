@@ -1,0 +1,49 @@
+ 
+\begin{algorithme}
+
+
+\signaturefonction
+{creerVide}
+{}
+{Statistiques}
+
+\signaturefonction
+{estVide}
+{stats : Statistiques}
+{\booleen}
+
+\signatureprocedure
+{fixerOccurenceItem}
+{\paramEntreeSortie{stats : Statistiques} ; \paramEntree{o : Octet}}
+
+\signatureProcedureAvecPreconditions
+{ajouterItem}
+{\paramEntreeSortie{stats : Statistiques} ; \paramEntree{o : Octet , nb : \naturel}}
+{non estPresent(stats,o)}
+
+\signatureProcedure
+{ajouterItemALaFin}
+{\paramEntreeSortie{stats : Statistiques} ; \paramEntree{o : Octet , nb : \naturel}}
+
+
+\signatureFonctionAvecPreconditions
+{nombreOccurencesItem}
+{stats : Statistiques, o : Octet}
+{\naturel}
+{estPresent(stats,o)}
+
+\signaturefonction
+{estPresent}
+{stats : Statistiques, o : octet}
+{\booleen}
+
+\signatureFonction
+{obtenirOctet}
+{donnee : donneeNoeud}
+{Octet}
+
+\signatureProcedure
+{obtenirStatSuivante}
+{\paramEntreeSortie{s : Statistiques}
+
+\end{algorithme}

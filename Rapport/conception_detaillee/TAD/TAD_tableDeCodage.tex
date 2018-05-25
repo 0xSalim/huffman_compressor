@@ -1,0 +1,52 @@
+\begin{algorithme}
+
+
+\constante{NBOCTMAX}{255}
+
+
+
+ \begin{enregistrement}{TableDeCodage}
+ \champEnregistrement{CBenFonctionDeOctets}{\tableauUneDimension{1..NBOCTMAX+1}{de }{CodeBinaire}}
+\end{enregistrement}
+
+\fonction
+{tableDeCodageVide}
+{}
+{TableDeCodage}
+{table : TableDeCodage ; i : \naturel}
+{
+  \affecter{}{}
+     \pour{i}{0}{NBOCTMAX+1}{}
+   {
+      \affecter{table.CBenFonctionDeOctets[i]}{CBcreerCodeBinaireVide()}
+   }
+  \retourner{table}
+}
+
+
+\procedure
+{fixerCodeElement}
+{\paramEntreeSortie{table : TableDeCodage} ; \paramEntree{element : Octet, moncodebinaire : CodeBinaire}}
+{adresse : \naturel}
+{
+  \affecter{adresse}{octetEnDecimal(element)}
+  \affecter{table.CBenFonctionDeOctets[adresse]}{CBcopierCodeBinaire(moncodebinaire)}
+}
+
+
+
+\fonction
+{obtenirCode}
+{table : TableDeCodage, element : Octet}
+{CodeBinaire}
+{moncodebinaire : CodeBinaire, adresse : \naturel}
+{
+  \affecter{adresse}{octetEnDecimal(element)}
+  \affecter{moncodebinaire}{CBcopierCodeBinaire(table.CBenFonctionDeOctets[adresse])}
+  
+  \retourner{moncodebinaire}
+}
+
+
+\end{algorithme}
+

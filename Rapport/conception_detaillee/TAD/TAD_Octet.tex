@@ -1,0 +1,76 @@
+
+\begin{algorithme}
+  \begin{enregistrement}{Octet}
+    \champEnregistrement{lesBits}{\tableauUneDimension{1..8}{de }{Bit}}
+  \end{enregistrement}
+
+  \fonction{creerOctet}
+{}
+{Octet}
+{resultat : Octet, i : NaturelNonNul}
+{
+   \pour{i}{1}{NBMAXBITS}{}
+   {
+       \affecter{resultat.lesBits[i]}{b0}
+   }
+   \retourner{resultat}
+}
+
+\fonctionAvecPreconditions
+{OCT.obteniriemeBit}
+{UnOctet : Octet, i : \naturel}
+{Bit}
+{i<=NBMAXBITS}
+{}
+  {
+    \retourner{UnOctet.LesBits[i]}
+  }
+
+    \fonction{octetEgaux}
+{Octet1, Octet2 : Octet}
+{\booleen}
+{resultat : \booleen, i : NaturelNonNul}
+{
+  \affecter{resultat}{Vrai}
+   \pour{i}{1}{NBMAXBITS}{}
+   {
+      \sialors{Octet1.LesBits[i]!=Octet2.LesBits[i]}
+      {
+
+       \affecter{resultat}{Faux}
+   }}
+   \retourner{resultat}
+}
+
+\fonction
+{octetEnDecimal}
+{oct : octet}
+{\naturel}
+{i, res : \naturel}
+{
+\affecter{res}{0}
+\pour{i}{7}{0}{}{
+\affecter{res}{res+bit\_en\_int(oct.lesBits[NB\_MAX\_BITS-i-1])*(int)pow((double)2,(double)i)}
+}
+\retourner{res}
+}
+
+\fonctionAvecPreconditions
+{decimalEnOctet}
+{dec : \naturel}
+{octet}
+{dec $\geq$ 0 ET dec $\leq$ 255}
+{i, temp, coeff : \naturel, res : octet}
+{
+\affecter{temp}{dec}
+\pour{i}{NB\_MAX\_BITS-1}{0}{}
+{
+\affecter{coeff}{pow(2,i)}
+\instruction{fixeriemeBit(res,NB\_MAX\_BITS-i-1,int\_en\_bit(temp/coeff))}
+\affecter{temp}{temp-coeff*(temp/coeff)}
+}
+\retourner{res}
+}
+
+\end{algorithme}
+

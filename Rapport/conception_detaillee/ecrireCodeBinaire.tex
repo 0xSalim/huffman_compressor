@@ -1,0 +1,44 @@
+
+
+
+\begin{algorithme}
+\procedure
+{ecrireCodeBinaire}
+{\paramEntree{fichierSource : FichierBinaire, table : TableDeCodage, nb : \entier}
+\paramSortie{fichierFinal : FichierBinaire}}
+{code, codeTemp : CodeBinaire
+octetTemp : octet}
+{
+\affecter{code}{copierCodeBinaire(obtenirCode(table,octetTemp,BAD\_copierBit),BAD\_copierBit)}
+\affecter{codeTemp}{creerCodeBinaireVide()}
+\affecter{octetTemp}{creerOctet()}
+\affecter{nb}{0}
+\tantque{non (FB\_finFichier(source)) ET FB\_lireOctet(source,octetTemp)}
+{
+  \affecter{codeTemp}{obtenirCode(table,octetTemp,copierBit)}
+  \instruction{CB\_concatener(code,codeTemp)}
+  \affecter{octetTemp}{creerOctet()}
+  \sialors{(CB\_obtenirLongueur(code)$\geq$8)}
+    {
+      \pour{i}{0}{8}{}
+      {
+        \instruction{fixeriemeBit(octetTemp,i,CB\_obtenirBit(code))}
+        \instruction{CB\_supprimerTete(code,desallouerBit)}
+      }
+      \instruction{FB\_ecrireOctet(fichierFinal,octetTemp)}
+      \affecter{nb}{nb+8}
+    }
+}
+\sialors{non CB\_estVide(code)}
+{
+  \affecter{octetTemp}{creerOctet()}
+  \pour{i}{0}{CB\_obtenirLongueur(code)}{}
+  {
+    \instruction{fixeriemeBit(octetTemp,i,CB\_obtenirBit(code))}
+    \instruction{CB\_supprimerTete(code,desallouerBit)}
+    \affecter{nb}{nb+1}
+  }
+}
+}
+
+\end{algorithme}

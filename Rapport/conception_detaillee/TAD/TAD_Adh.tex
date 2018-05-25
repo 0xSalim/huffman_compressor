@@ -1,0 +1,65 @@
+
+
+\begin{algorithme}
+  \begin{enregistrement}{ADH\_valeurRacine}
+    \champEnregistrement{ponderation}{Entier}
+    \champEnregistrement{valeurOctet}{Octet}
+  \end{enregistrement}
+
+  \begin{enregistrement}{ADH\_Racine}
+    \champEnregistrement{Racine}{ADH\_valeurRacine}
+    \champEnregistrement{filsDroit}{ADH\_arbreDeHuffman}
+    \champEnregistrement{filsGauche}{ADH\_arbreDeHuffman}
+  \end{enregistrement}
+
+
+ \fonction{ADH\_fusionnerArbreDeHuffman}
+{arbre1, arbre2 : ADH\_arbreDeHuffman}
+{ADH\_arbreDeHuffman}
+{arbreRes : ADH\_arbreDeHuffman}
+{
+	\affecter{arbreRes}{ADH\_creerArbreDeHuffman(creerOctet(),arbre1->Racine.ponderation+arbre2->Racine.ponderation)}
+	\affecter{arbreRes.filsDroit}{arbre1}
+	\affecter{arbreRes.filsGauche}{arbre2}
+	\retourner{arbreRes}
+}
+
+\procedure
+{ADH\_supprimerPere}
+{\paramEntreeSortie{arbre, filsGauche, filsDroit : Arbre de Huffman}}
+{}
+{
+\sialorssinon{non ADH\_estUneFeuille(arbre)}{
+\affecter{filsDroit}{ADH\_obtenirFilsDroit(*arbre)}
+\affecter{filsGauche}{ADH\_obtenirFilsGauche(*arbre)}
+}
+{
+\affecter{filsDroit}{ADH\_creerArbreDeHuffmanVide()}
+\affecter{filsGauche}{ADH\_creerArbreDeHuffmanVide()}
+}
+\instruction{desallouerArbre(arbre)}
+}
+
+\procedure
+{ADH\_supprimerArbre}
+{\paramEntreeSortie{arbre : Arbre de Huffman}}
+{filsDroit, filsGauche : Arbre de Huffman}
+{
+\sialors{non ADH\_estVide(arbre)}{
+  \sialorssinon{non ADH\_estUneFeuille(arbre)}{
+    \instruction{ADH\_supprimerPere(arbre,filsDroit,filsGauche)}
+    \sialors{non ADH\_estVide(filsDroit) }{
+      \instruction{ADH\_supprimerArbre(filsDroit)}
+    }
+    \sialors{non ADH\_estVide(filsGauche)}{
+      \instruction{ADH\_supprimerArbre(filsGauche)}
+    }
+  }
+  {
+  \instruction{ADH\_supprimerPere(arbre,filsDroit,filsGauche)}
+  }
+}
+}
+
+
+\end{algorithme}

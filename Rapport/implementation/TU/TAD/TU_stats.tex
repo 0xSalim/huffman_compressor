@@ -1,0 +1,92 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+void test_S_Statisiques_estVide(void)
+{
+  S_Statistiques s= S_creerVide();
+	CU_ASSERT_TRUE(S_estVide(s));
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+
+void test_S_Statisiques_estVide_casNonVide(void)
+{
+ S_Statistiques s= S_creerVide();
+	octet o = creerOctet();
+	S_ajouterItem(&s, o, 4, SDNAD_copierDonneeNoeud, SDNAD_comparerDonneeNoeud);
+	CU_ASSERT_TRUE(!S_estVide(s));
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+
+void test_S_Statistiques_taille(void)
+{
+	S_Statistiques s= S_creerVide();
+	octet o = creerOctet();
+	S_ajouterItem(&s, o, 4, SDNAD_copierDonneeNoeud, SDNAD_comparerDonneeNoeud);
+	CU_ASSERT_TRUE(S_obtenirTaille(s) ==1);
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+
+void test_S_Statistiques_supprimerTete(void)
+{
+	S_Statistiques s= S_creerVide();
+	octet o = creerOctet();
+	S_ajouterItem(&s, o, 4, SDNAD_copierDonneeNoeud, SDNAD_comparerDonneeNoeud);
+	S_supprimerTete(&s,SDNAD_desallouerDonneeNoeud);
+	CU_ASSERT_TRUE((S_estVide(s))&&(S_obtenirTaille(s) ==0));
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+
+void test_S_Statistiques_nboccurencesItem(void)
+{
+	S_Statistiques s= S_creerVide();
+	octet o = creerOctet();
+	S_ajouterItem(&s, o, 4, SDNAD_copierDonneeNoeud, SDNAD_comparerDonneeNoeud);
+	S_fixerOccurencesItem(s, o, 6, SDNAD_copierDonneeNoeud, SDNAD_desallouerDonneeNoeud, SDNAD_comparerDonneeNoeud);
+	CU_ASSERT_TRUE(S_nombreOccurencesItem(s,o,SDNAD_comparerDonneeNoeud)==6);
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+
+void test_S_obtenirOctet(){
+	S_Statistiques s= S_creerVide();
+	bit monBit;
+	octet o,o1 = creerOctet();
+	monBit = b1;
+	fixeriemeBit(&o,2,monBit);
+	S_ajouterItem(&s, o, 4, SDNAD_copierDonneeNoeud, SDNAD_comparerDonneeNoeud);
+	o1=S_obtenirOctet(s);
+	CU_ASSERT_TRUE(octetEgaux(o1,o));
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+
+void test_S_ajouterItem(){
+	S_Statistiques s= S_creerVide();
+	octet o = creerOctet();
+	S_ajouterItem(&s, o, 4, SDNAD_copierDonneeNoeud, SDNAD_comparerDonneeNoeud);
+	CU_ASSERT_TRUE(S_obtenirTaille(s) ==1);
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+
+void test_S_estPresent(){
+	S_Statistiques s= S_creerVide();
+	octet o = creerOctet();
+	S_ajouterItem(&s, o, 4, SDNAD_copierDonneeNoeud, SDNAD_comparerDonneeNoeud);
+	CU_ASSERT_TRUE(S_estPresent(s,o,SDNAD_comparerDonneeNoeud));
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+
+void test_S_ObtenirStatSuivante(){
+	S_Statistiques s= S_creerVide();
+	octet o1,o2 = creerOctet();
+	int ponderation;
+	bit monBit;
+	monBit = b1;
+	fixeriemeBit(&o2,2,monBit);
+	fixeriemeBit(&o2,1,monBit);
+	S_ajouterItem(&s, o2, 6, SDNAD_copierDonneeNoeud, SDNAD_comparerDonneeNoeud);
+  o1=S_obtenirOctet(s);
+
+	ponderation = S_nombreOccurencesItem(s,o1,SDNAD_comparerDonneeNoeud);
+	CU_ASSERT_TRUE((ponderation ==6) && octetEgaux(o1,o2));
+	S_supprimer(&s,SDNAD_desallouerDonneeNoeud);
+}
+\end{minted}
+ 

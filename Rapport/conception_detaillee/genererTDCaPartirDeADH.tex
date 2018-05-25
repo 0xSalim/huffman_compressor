@@ -1,0 +1,18 @@
+%genererTDCaPartirDeADH
+
+\begin{algorithme}
+
+
+\fonction{genererTDCaPartirDeADH}
+{arbre : ADH\_ArbreDeHuffman}
+{TableDeCodage}
+{table : TableDeCodage, code : CodeBinaire;}
+{
+  \affecter{table}{tableDeCodageVide()}
+  \affecter{code}{CB\_creerCodeBinaireVide()}
+  \instruction{chercherFeuilleRecursivement(arbre,table,code,BAD\_copierBit)}
+}
+
+\end{algorithme}
+
+

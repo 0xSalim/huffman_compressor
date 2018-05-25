@@ -1,0 +1,156 @@
+\begin{algorithme}
+
+\type{CodeBinaire}{Liste Chainee}
+
+
+
+\fonction
+{CBcreerCodeBinaireVide}
+{}
+{CodeBinaire}
+{}
+{
+    \retourner{(CodeBinaire)LCListeChaineeVide()}
+}
+
+\fonction
+{CBestVide}
+{c : CodeBinaire}
+{\booleen}
+{}
+{
+    \retourner{LCestVide(c)}
+}
+
+
+
+
+\procedure
+{CBajouterALaFin}
+{\paramEntreeSortie{c : CodeBinaire} ; \paramEntree{b : Bit}}
+{temp : CodeBinaire}
+{
+    \sialorssinon{CBestVide(c)}
+    {
+      \instruction{CBajouterEnTete(c,b,copierBit)}
+    }
+    {
+      \affecter{temp}{CBobtenirCodeBinaireSuivant(c)}
+      \instruction{CBajouterALaFin(temp, b, copierBit}
+      \instruction{CBfixerCodeBinaireSuivant(c, temp)}
+    }
+
+}
+
+\procedureAvecPreconditions
+{CBfixerCodeBinaireSuivant}
+{\paramEntreeSortie{c1 : CodeBinaire}; \paramEntree{c2 : CodeBinaire}}
+{non CB.estVide(c1)}
+{}
+{
+  \instruction{LCfixerListeSuivante(\typePointeur.c1, c2}
+}
+
+\fonction
+{CBobtenirCodeBinaireSuivant}
+{c : CodeBinaire}
+{CodeBinaire}
+{}
+{
+  \retourner{LCobtenirListeSuivante(c)}
+}
+
+\fonctionAvecPreconditions
+{CBobtenirBit}
+{c : CodeBinaire}
+{Bit}
+{non CBestVide(c)}
+{e : \typePointeur.bit}
+{
+  \affecter{e}{LCobtenitElement(c)}
+  \retourner{\typePointeur.e}
+}
+
+\fonction
+{CBobtenirLongueur}
+{c : CodeBinaire}
+{\naturel}
+{res : \naturel, temp : CodeBinaire}
+{
+  \affecter{res}{0}
+   \affecter{temp}{c}
+    \tantque{non CBestVide(temp)}
+      {
+      \affecter{temp}{CBobtenirCodeBinaireSuivant(temp)}
+      \affecter{res}{res + 1}
+      }
+    \retourner{res}
+}
+
+
+\procedureAvecPreconditions
+{CBsupprimerTete}
+{\paramEntreeSortie{c : CodeBinaire}}
+{non CBestVide(c)}
+{}
+{
+    \instruction{LCsupprimerTete(c)}
+}
+
+\procedureAvecPreconditions
+{supprimerBit}
+{\paramEntreeSortie{c : CodeBinaire}; \paramEntree{i : \naturel}}
+{1 $\leq$ i et i$\leq$ CBobtenirLongueur(c)}
+{temp : CodeBinaire}
+{
+  \sialorssinon{i=1}
+    {
+      \instruction{CBsupprimerTete(c)}
+    }
+    {
+      \affecter{temp}{CBobtenirCodeBinaireSuivant(c)}
+      \instruction{CBsupprimerBit(temp,i-1)}
+      \instruction{CBfixerCodeBinaireSuivant(c, temp)}
+    }
+}
+
+\procedure
+{CBConcatener}
+{\paramEntreeSortie{c1 : CodeBinaire}\paramEntree{c2 : CodeBinaire}}
+{temp : CodeBinaire}
+{
+\affecter{temp}{c1}
+\sialorssinon{CBestVide(c1)}{
+\affecter{c1}{c2}
+}
+{
+  \tantque{non CBestVide(CBobtenirCodeBinaireSuivant(temp)}
+  {
+    \affecter{temp}{CBobtenirCodeBinaireSuivant(temp)}
+  }
+  \instruction{CBfixerCodeBinaireSuivant(temp,c2)}
+}
+}
+
+\fonctionAvecPreconditions
+{CBconvertirCodeBinaireEnBaseDix}
+{mon_code_binaire : CodeBinaire}
+{\naturel}
+{non CBestVide(mon\_code\_binaire)}
+{
+ bit, adresse, longueur, i : \naturel
+}
+{
+\affecter{adresse}{0}
+\affecter{i}{0}
+\affecter{longueur}{CBobtenirLongueur(mon\_code\_binaire)}
+\pour{i}{1}{longueur}{}
+{
+  \affecter{bit}{CB_obtenirIemeBitCodeBinaire(mon\_code\_binaire, i)}
+  \affecter{adresse}{adresse+bit\_en\_int(bit)*pow(2,longueur-i)}
+}
+\retourner{adresse}
+}
+
+
+\end{algorithme}

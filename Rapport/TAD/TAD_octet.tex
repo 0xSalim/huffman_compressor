@@ -1,0 +1,21 @@
+\begin{tad}
+	\tadNom{Octet}
+	\tadDependances{\booleen, \naturel, Bit}
+	\begin{tadOperations}{Octet}
+		\tadOperation{creerOctet}{}{\tadUnParam{Octet}}
+		\tadOperationAvecPreconditions{obteniriemeBit}{\tadDeuxParams{Octet}{\naturel}}{\tadUnParam{Bit}}				
+		\tadOperation{fixeriemeBit}{\tadTroisParams{Octet}{Bit}{\naturel}}{\tadUnParam{Octet}}
+		\tadOperation{octetsEgaux}{\tadDeuxParams{Octet}{Octet}}{\tadUnParam{\booleen}}
+		\tadOperationAvecPreconditions{decimalEnOctet}{\tadUnParam{Entier}}{\tadUnParam{Octet}}
+		\tadOperation{octetEnDecimal}{\tadUnParam{Octet}}{\tadUnParam{Entier}}
+		\tadOperation{copierOctet}{\tadUnParam{Octet}}{\tadUnParam{Octet}}
+
+	\end{tadOperations}
+
+	\begin{tadPreconditions}{}
+		\tadPrecondition{obteniriemeBit(i)}{1<=i<=8}
+		\tadPrecondition{decimalEnOctet(dec)}{0<=dec<=255}
+
+	\end{tadPreconditions}
+
+\end{tad}

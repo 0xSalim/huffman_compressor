@@ -1,0 +1,22 @@
+\begin{tad}
+	\tadNom{FileDePriorit�}
+	\tadParametres{Item}
+	\tadDependances{\booleen,\naturel}
+	\begin{tadOperations}{FileDePriorit�}
+		\tadOperation{creerVide}{}{\tadUnParam{FileDePriorit�}}
+		\tadOperation{estVide}{\tadUnParam{FileDePriorit�}}{\tadUnParam{\booleen}}
+		\tadOperationAvecPreconditions{defiler} {\tadUnParam{FileDePriorit�}} {\tadUnParam{FileDePriorit�}}
+		\tadOperation{insererItem}{\tadTroixParams{FileDePriorite}{Item}{\booleen}} {\tadUnParam{FileDePriorite}}
+		\tadOperationAvecPreconditions{obtenirTete}{\tadUnParam{FileDePriorite}} {\tadUnParam{Item}}
+		\tadOperation{longueur}{\tadUnParam{FileDePriorite}} {\tadUnParam{Naturel}}
+	\end{tadOperations}
+	\begin{tadSemantiques}{Statistiques}
+		\tadSemantique{defiler}{Supprime l'Item en t�te de liste (le premier � sortir).}
+		\tadSemantique{insererItem}{Ins�re l'Item au bon endroit dans la liste. Il faut donc �tre capable de comparer deux Items.}
+		\tadSemantique{obtenirTete}{Donne l'Item en t�te de liste (premier � sortir)}
+	\end{tadSemantiques}
+	\begin{tadPreconditions}{}
+		\tadPrecondition{defiler(f)} {non(estVide(f))}
+		\tadPrecondition{obtenirTete(f)} {non(estVide(f))}
+	\end{tadPreconditions}
+\end{tad}

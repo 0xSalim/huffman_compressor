@@ -1,0 +1,25 @@
+\signaturefonction {tableDeCodageVide}{}{\TableDeCodage}
+
+\procedure {ajouterElement} {\paramEntree{element:\Octet}} {\paramEntreeSortie{table:\TableDeCodage}}
+
+précondition(s) non(estPresent(table, element))
+
+\procedure {fixerCodeElement} {\paramEntree{element:\Octet, mon_code_binaire:\CodeBinaire}} {\paramEntreeSortie{table:\TableDeCodage}} 
+
+précondition(s) estPresent(table, element)
+
+\procedure {supprimerElement} {\paramEntree{element:\Octet}} {\paramEntreeSortie{table:TableDeCodage}}
+
+précondition(s) estPresent(table, element)
+
+\signaturefonction {estPresentElement}{table:\TableDeCodage, element:\Octet}{\Booléen}
+
+\signaturefonction {estPresentCodeBinaire}{table:\TableDeCodage, mon_code_binaire:\CodeBinaire}{\Booléen}
+
+\signaturefonction {obtenirCode}{table:\TableDeCodage, element:\Octet}{\CodeBinaire}
+
+précondition(s) estPresentElement(table,element)
+
+\signaturefonction {obtenirElement}{table:\TableDeCodage, mon_code_binaire:\CodeBinaire}{\Octet}
+
+précondition(s) estPresentCodeBinaire(table,mon_code_binaire)

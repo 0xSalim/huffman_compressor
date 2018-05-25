@@ -1,0 +1,46 @@
+%% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{babel}
+\begin{document}
+Pour représenter la table de Codage.
+
+Le fonctionnement de la table de codage nous a fait penser à celui
+d'un dictionnaire, à la différence notable que la clé n'est pas toujours
+la même : les octets sont la clé pour coder et les codes binaires
+la clé pour décoder. Comment avoir de bonnes performances pour coder
+et pour décoder à la fois ? 
+
+Pour l'implémentation d'un dictionnaire, une table de hachage offre
+généralement de meilleures performances qu'une liste chaînée ou un
+tableau. Nous avons donc envisagé de faire une table de hachage pour
+représenter la table de codage. Or notre table de codage a une taille
+maximun, étant donné qu'il y a 256 octets possibles, et 510 codes
+bianires possibles (tous les codes binaires possédant de 1 à 8 bits
+sont possibles). Pourquoi ne pas la représenter simplement avec un
+tableau pouvant contenir tous les éléments (de taille 510)? Cela permettrait
+d'acceder directement aux octets à partir des codes binaires, comme
+avec une fonction de hashage (complexité O(1)), sans avoir à gérer
+de conflit (plus facile).
+
+Cependant, faire une fonction d'adressage qui donne l'adresse de l'octet
+à partir du code binaire, c'est bien pour décoder, mais si nous utilisons
+la même table de codage avec la même structure pour coder, la complexité
+est en 0(n). Plusieurs solutions étaient alors envisageables : créer
+des tables de codage différentes si on code ou on décode, ou représenter
+la table de codage par deux tableaux, l'un adressant les octets en
+fonction des codes binaires et l'autre adressant les codes binaires
+en fonction des octets. La première solution permet d'avoir à chaque
+fois une table de codage plus petite (un seul tableau, moins de mémoire
+allouée, mais c'est négligeable car c'est inférieur à 1kOctet), alors
+que la seconde permet d'avoir une table de codage plus complète, sur
+laquelle toutes les opérations du TAD sont rapides.
+
+Nous avons choisi la deuxième solution pour que la table de codage
+soit plus facile à manipuler : on peut créer une table de codage sans
+se soucier du sens dans lequel elle va fonctionner (coder ou decoder),
+ainsi on peut utiliser la table de codage sans se soucier de comment
+elle est implémentée, elle sera efficace de toute façon. 
+\end{document}

@@ -1,0 +1,34 @@
+ \begin{tad}
+  \tadNom{Code Binaire}
+  \tadDependances{Bit,Naturel}
+  \begin{tadOperations}{Code Binaire}
+   \tadOperation{CreerCodeBinaireVide}{}{\tadUnParam{Code Binaire}}
+   \tadOperation{estVide}{\tadUnParam{Code Binaire}}{\tadUnParam{Booleen}}
+   \tadOperationAvecPreconditions{obtenirBit}{\tadUnParam{Code Binaire}}{\tadUnParam{Bit}}
+   \tadOperationAvecPreconditions{obtenirIemeBitCodeBinaire}{\tadDeuxParams{Code Binaire}{Naturel Non Nul}}{\tadUnParam{Bit}}
+   \tadOperation{obtenirLongueur}{\tadUnParam{Code Binaire}}{\tadUnParam{Naturel Non Nul}}
+   \tadOperation{obtenirCodeBinaireSuivant}{\tadUnParam{Code Binaire}}{\tadUnParam{Code Binaire}}
+   \tadOperationAvecPreconditions{fixerCodeBinaireSuivant}{\tadUnParam{Code Binaire}}{\tadUnParam{Code Binaire}}
+   \tadOperationAvecPreconditions{supprimerTete}{\tadUnParam{Code Binaire}}{\tadUnParam{Code Binaire}}
+   \tadOperationAvecPreconditions{supprimerBit}{\tadDeuxParams{Code Binaire}{Naturel Non Nul}}{\tadUnParam{Code Binaire}}
+   \tadOperation{supprimer}{\tadUnParam{Code Binaire}}{}
+   \tadOperation{ajouterEnTete}{\tadDeuxParams{Code Binaire}{Bit}}{\tadUnParam{Code Binaire}}
+   \tadOperationAvecPreconditions{ajouterBit}{\tadTroisParams{Code Binaire}{Bit}{Naturel}}{\tadUnParam{Code Binaire}}
+   \tadOperation{ajouterAlaFin}{\tadDeuxParams{Code Binaire}{Bit}}{\tadUnParam{Code Binaire}}
+   \tadOperation{sontEgaux}{\tadDeuxParams{Code Binaire}{Code Binaire}}{\tadUnParam{Booleen}}
+   \tadOperation{concatener}{\tadDeuxParams{Code Binaire}{Code Binaire}}{\tadUnParam{Code Binaire}}
+   \tadOperation{copierCodeBinaire}{\tadUnParam{Code Binaire}}{\tadUnParam{Code Binaire}}
+   \tadOperation{convertirCodeBinaireEnBaseDix}{\tadUnParam{Code Binaire}}{\tadUnParam{Entier}}
+  \end{tadOperations}
+  \begin{tadPreconditions}{}
+    	\tadPrecondition{obtenirBit(Code)}{non(estVide(Code))}
+  	\tadPrecondition{obtenirIemeBitCodeBinaire(Code,i)}{i>0, i<obtenirLongueur(Code)}
+  	\tadPrecondition{fixerCodeBinaireSuivant(C1,C2)}{non(estVide(C1))}
+  	\tadPrecondition{supprimerTete(Code)}{non(estVide(Code))}
+  	\tadPrecondition{supprimerBit(Code, i)}{i>0, i<obtenirLongueur(Code)}
+  	\tadPrecondition{ajouterBit(Code, i, b)}{i>0, i<obtenirLongueur(Code)}
+
+
+  \end{tadPreconditions}
+ \end{tad}
+

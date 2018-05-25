@@ -1,0 +1,11 @@
+\signaturefonction {decoder}{table:\TableDeCodage, mon\_fichier\_binaire:\FichierBinaire, longueurFichierDecode:\Nauturel}{\fichier}
+
+\signaturefonction {lireBit}{curseur:\NaturelNonNul, mon\_fichier\_binaire:\FichierBinaire}{\Bit}
+
+\signaturefonction {creerFichier}{}{\FichierBinaire}
+
+\signatureprocedure {lireCodeBinaireEtDecoder}
+{\paramEntree{table:\TableDeCodage, mon\_fichier\_binaire:\FichierBinaire},\paramEntreeSortie{curseur:\NaturelNonNul, S mon\_octet:\Octet}} 
+
+\signatureprocedure {ecrireDansLeFichier}
+{\paramEntree{mon\_octet:\Octet}, \paramEntreeSortie{mon\_fichier:\FichierBinaire, curseur:\NaturelNonNul}}

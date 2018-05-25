@@ -1,0 +1,57 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+ void test_tableDeCodageVide(){
+  TableDeCodage tdc=tableDeCodageVide();
+  octet monOctet = creerOctet();
+  fixeriemeBit(&monOctet,5,b1);
+  CU_ASSERT_TRUE(CB_estVide(obtenirCode(tdc, monOctet, BAD_copierBit)));
+  TDC_supprimer(&tdc,BAD_desallouerBit);
+  }
+
+
+
+void test_TDC_fixerCodeElement(void){
+    TableDeCodage tdc=tableDeCodageVide();
+    CodeBinaire code=CB_creerCodeBinaireVide();
+    octet oct=creerOctet();
+
+    fixeriemeBit(&oct,1,b0);
+    fixeriemeBit(&oct,2,b0);
+    fixeriemeBit(&oct,3,b0);
+    fixeriemeBit(&oct,5,b0);
+    fixeriemeBit(&oct,4,b0);
+    fixeriemeBit(&oct,6,b0);
+    fixeriemeBit(&oct,7,b0);
+    fixeriemeBit(&oct,8,b0);
+
+    CB_ajouterEnTete(&code,b1,BAD_copierBit);
+    fixerCodeElement(oct,code,&tdc,BAD_copierBit);
+    CU_ASSERT_TRUE(CB_sontEgaux(obtenirCode(tdc, oct, BAD_copierBit), code, BAD_comparerBit));
+    TDC_supprimer(&tdc,BAD_desallouerBit);
+    CB_supprimer(&code,BAD_desallouerBit);
+}
+
+
+
+void test_TDC_obtenirCode(void){
+    TableDeCodage tdc=tableDeCodageVide();
+    CodeBinaire code=CB_creerCodeBinaireVide();
+    octet oct=creerOctet();
+
+    fixeriemeBit(&oct,1,b0);
+    fixeriemeBit(&oct,2,b0);
+    fixeriemeBit(&oct,3,b0);
+    fixeriemeBit(&oct,5,b0);
+    fixeriemeBit(&oct,4,b0);
+    fixeriemeBit(&oct,6,b0);
+    fixeriemeBit(&oct,7,b0);
+    fixeriemeBit(&oct,8,b0);
+
+    CB_ajouterEnTete(&code, b1,BAD_copierBit);
+    fixerCodeElement(oct,code,&tdc,BAD_copierBit);
+    CU_ASSERT_TRUE(CB_sontEgaux(obtenirCode(tdc, oct, BAD_copierBit), code, BAD_comparerBit));
+    TDC_supprimer(&tdc,BAD_desallouerBit);
+    CB_supprimer(&code,BAD_desallouerBit);
+}
+
+\end{minted}
+ 

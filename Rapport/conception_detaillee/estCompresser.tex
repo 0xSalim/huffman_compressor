@@ -1,0 +1,16 @@
+
+%compresser
+
+\begin{algorithme}
+\fonction
+{estCompres}
+{fichier : FichierBinaire, copierDonneNoeud : fonction copier, comparerDonneNoeud : fonction comparer}
+{\entier}
+{bonCode, codeFic : octet}
+{
+\affecter{bonCode}{genererBonCode()}
+\affecter{codeFic}{recupererCodeIdentification(fic)}
+\retourner{octetEgaux(codeFic,bonCode)}
+}
+
+\end{algorithme}

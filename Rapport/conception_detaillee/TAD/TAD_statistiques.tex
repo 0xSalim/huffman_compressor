@@ -1,0 +1,93 @@
+
+
+\begin{algorithme}
+
+
+
+\begin{enregistrement}{Statistiques}
+ \champEnregistrement{taille}{\naturel}
+ \champEnregistrement{lesStats}{Liste Chainee}
+\end{enregistrement}
+
+
+\begin{enregistrement}{donneeNoeud}
+ \champEnregistrement{loctet}{octet}
+ \champEnregistrement{ponderation}{\naturel}
+\end{enregistrement}
+
+\fonction
+{ScreerdonneeNoeud}
+{oct : octet , ponderation : \naturel}
+{donneeNoeud}
+{res : donneeNoeud}
+{
+  \affecter{res.loctet}{oct}
+  \affecter{res.ponderation}{ponderation}
+
+  \retourner{res}
+}
+
+\fonction
+{ScreerVide}
+{}
+{Statistiques}
+{s : Statistiques}
+{
+  \affecter{s.taille}{0}
+  \affecter{s.lesStats}{LClisteChaineeVide()}
+
+  \retourner{s}
+}
+
+\fonctionAvecPreconditions
+{SnombreOccurenceItem}
+{s : Statistiques, oct : Octet}
+{\naturel}
+{LCestPresent(SobtenirLesStats(s)) ET non(LCestVide(SobtenirLesStats(s)))}
+{donnee : donneeNoeud ; l : ListeChainee}
+{
+  \affecter{donnee}{ScreerDonneeNoeud(oct,1)}
+    \affecter{l}{SobtenirLesStats(s)}
+   \tantque{non(octetEgaux(SDNobtenirOctet(LCobtenirElement(l)),oct))}
+    {\affecter{l}{LCobtenirListeSuivante(l)}}
+
+
+\retourner{SobtenirPonderation(LCobtenirElement(l))}
+}
+
+ \procedureAvecPreconditions
+{SajouterItem}
+{\paramEntreeSortie{stats : Statistiques} ; \paramEntree{o : Octet , ponderation : \naturel}}
+{l : Liste Chainee ; donnee : donneeNoeud}
+{non LCestPresent(SobtenirLesStats(s),ScreerDonneeNoeud(o,ponderation))}
+{
+	\affecter{l}{SobtenirLesStats(s)}
+	\affecter{donnee}{ScreerDonneeNoeud(o,ponderation)}
+	\instruction{SajouterDonneeNoeud(s,donnee,copierDonneeNoeud)}
+}
+
+\procedure
+{SajouterItemALaFin}
+{\paramEntree{ponderation : \naturel, o : octet}\paramEntreeSortie{s : Statistiques}}
+{lcTemp,l : Liste Chainee, i, taille : \naturel}
+{
+\affecter{lcTemp}{SobtenirLesStats(lesStats)}
+\affecter{taille}{SobtenirTaille(lesStats)}
+\sialorssinon{SestVide(lesStat)}{
+\instruction{SajouterItem(lesStats,monOctet,ponderation)}
+}
+{
+\affecter{l}{lTemp}
+\pour{i}{0}{taille}{}
+{
+\sialors{non LCestVide(lcTemp)}
+{
+\affecter{lcTemp}{LCobtenirListeSuivante(lcTemp)}
+}
+}
+\instruction{SfixerLesStats(lesStats,lcTemp)}
+\instruction{SajouterItemALafin(lesStats,monOctet,ponderation}
+\instruction{SfixerLesStats(lesStats,l)}
+}}
+
+\end{algorithme}

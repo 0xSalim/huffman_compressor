@@ -1,0 +1,115 @@
+\subsection{Conception Préliminaire (CP) et Détaillée (CD) :}
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline 
+ & Salim & Assvin & Sylvie & Thomas & Léonard\tabularnewline
+\hline 
+\hline 
+compresser & CD &  &  &  & CP\tabularnewline
+\hline 
+estCompressible &  &  & CD &  & CP\tabularnewline
+\hline 
+estCompresse &  &  & CD &  & CP\tabularnewline
+\hline 
+genererStats & CP & CD &  &  & \tabularnewline
+\hline 
+genererTDCapartirDeStats &  &  & CD &  & CP\tabularnewline
+\hline 
+genererFDP & CD & CP &  &  & \tabularnewline
+\hline 
+genererADH &  &  &  & CP & CD\tabularnewline
+\hline 
+genererTDCaPartirDeADH &  &  &  &  & CP/CD\tabularnewline
+\hline 
+ecrireEnTete &  &  &  & CD & CP\tabularnewline
+\hline 
+ecrireCodeBinaire &  & CD & CP &  & \tabularnewline
+\hline 
+decompresser &  &  &  & CD & CP\tabularnewline
+\hline 
+decoder &  &  & CP/CD &  & \tabularnewline
+\hline 
+recupererEnTete & CP &  &  & CD & \tabularnewline
+\hline 
+main (A0) &  &  &  &  & CD\tabularnewline
+\hline 
+TAD octet & CP &  & CD &  & \tabularnewline
+\hline 
+TAD Code Binaire &  & CD &  & CP & \tabularnewline
+\hline 
+TAD Arbre De Huffman & CP &  &  & CD & \tabularnewline
+\hline 
+TAD Table De Codage &  &  & CP &  & CD\tabularnewline
+\hline 
+TAD File De Priorité  & CD &  &  &  & CP\tabularnewline
+\hline 
+TAD Statistiques &  & CD &  &  & CP\tabularnewline
+\hline 
+\end{tabular}
+
+\subsection{Implémentation (I) et Tests Unitaires (TU) : }
+
+\subsubsection{TAD :}
+
+\begin{tabular}{|c|c|c|}
+\hline 
+ & I & TU\tabularnewline
+\hline 
+\hline 
+Octet & Salim & Thomas\tabularnewline
+\hline 
+Code Binaire & Assvin & Thomas\tabularnewline
+\hline 
+Statistiques & Léonard & Assvin\tabularnewline
+\hline 
+Table De Codage & Sylvie & Salim\tabularnewline
+\hline 
+Arbre De Huffman & Thomas & Sylvie\tabularnewline
+\hline 
+File De Priorité & Salim & Léonard\tabularnewline
+\hline 
+Liste Chaînée & Léonard & Assvin\tabularnewline
+\hline 
+Fichier Binaire & Assvin & X\tabularnewline
+\hline 
+\end{tabular}
+
+\subsubsection{Huffman :}
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline 
+ & Salim & Assvin & Sylvie & Thomas & Léonard\tabularnewline
+\hline 
+\hline 
+compresser & I &  &  &  & \tabularnewline
+\hline 
+estCompressible &  &  &  &  & I\tabularnewline
+\hline 
+estCompresse &  &  &  &  & I\tabularnewline
+\hline 
+genererStats &  & I &  &  & \tabularnewline
+\hline 
+genererTDCaPartirDeStats &  &  & I &  & \tabularnewline
+\hline 
+genererFDP & I &  &  &  & \tabularnewline
+\hline 
+genererADH &  &  &  & I & \tabularnewline
+\hline 
+genererTDCaPartirDeADH &  &  &  &  & I\tabularnewline
+\hline 
+ecrireEnTete &  &  &  & I & \tabularnewline
+\hline 
+ecrireCodeBinaire &  & I &  &  & \tabularnewline
+\hline 
+decompresser &  &  &  & I & \tabularnewline
+\hline 
+decoder &  &  &  &  & I\tabularnewline
+\hline 
+recupererEnTete &  &  &  & I & \tabularnewline
+\hline 
+main &  &  &  &  & I\tabularnewline
+\hline 
+makefile &  & I &  &  & \tabularnewline
+\hline 
+\end{tabular}
+ 

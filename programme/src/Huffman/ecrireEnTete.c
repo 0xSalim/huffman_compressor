@@ -1,0 +1,44 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include "ecrireEnTetePublic.h"
+#include "ecrireEnTetePrivee.h"
+
+
+void ecrireEnTete(FichierBinaire *fichierCompresse, S_Statistiques *statistique){
+	FB_deplacerCurseur(fichierCompresse,0);
+	ecrireCodeIdentification(fichierCompresse);
+	ecrireStatistiques(fichierCompresse, statistique);
+	
+}
+
+octet genererBonCode(){
+	octet codeIdentification = OCT_creerOctet();
+	OCT_fixeriemeBit(&codeIdentification,0,b1);
+	OCT_fixeriemeBit(&codeIdentification,7,b1);
+	return codeIdentification;
+}
+
+void ecrireTaille(FichierBinaire *fichierCompresse,int taille){
+	FB_ecrireNaturel(fichierCompresse, taille);
+}
+
+void ecrireCodeIdentification(FichierBinaire *fichierCompresse){
+	octet codeIndentification=genererBonCode();
+	
+	FB_ecrireOctet(fichierCompresse, codeIndentification);
+}
+
+void ecrireStatistiques(FichierBinaire *fichierCompresse, S_Statistiques *statistiques){
+	 S_donneeNoeud donneeNoeud;
+	 int tailleStat;
+	 tailleStat = S_obtenirTaille(*statistiques);
+	 FB_ecrireNaturel(fichierCompresse,tailleStat);
+	while(!S_estVide(*statistiques))
+	{
+		donneeNoeud = S_obtenirDonneeNoeud(*statistiques);
+		FB_ecrireOctet(fichierCompresse, donneeNoeud.loctet);
+		FB_ecrireNaturel(fichierCompresse,donneeNoeud.ponderation);
+		S_supprimerTete(statistiques,SDNAD_desallouerDonneeNoeud);
+	}
+	
+}

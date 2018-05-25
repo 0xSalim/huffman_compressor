@@ -1,0 +1,38 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "TableDeCodage.h"
+
+TableDeCodage tableDeCodageVide(){
+	TableDeCodage table;
+	int i=0;
+		for(i=0;i<NB_OCT_MAX+1;i++){
+			table.CB_EnFonctionDeOctets[i]= CB_creerCodeBinaireVide();
+			
+		}
+		printf("s","tdc vide bien crée");
+	return table;
+}
+
+void fixerCodeElement(octet element, CodeBinaire mon_code_binaire, TableDeCodage *table,CLC_FonctionCopier copierBit){
+//Fait correspondre le code binaire en parametre avec l'element en parametre
+	int adresse;
+	//on modifie le tableau de Codes Binaires
+	adresse=octetEnDecimal(element);
+	table->CB_EnFonctionDeOctets[adresse]= CB_copierCodeBinaire(mon_code_binaire, copierBit);
+}
+
+CodeBinaire obtenirCode(TableDeCodage table, octet element,CLC_FonctionCopier copierBit){
+//renvoie le code binaire correspondant a l'element}
+	int adresse;
+	CodeBinaire mon_code_binaire;
+
+	//on recherche dans le tableau des codes binaires avec l'adresse de l'element
+	adresse=octetEnDecimal(element);
+	mon_code_binaire=CB_copierCodeBinaire (table.CB_EnFonctionDeOctets[adresse], copierBit);
+	return(mon_code_binaire);
+}
+
+\end{minted}
+ 

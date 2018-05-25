@@ -1,0 +1,67 @@
+
+\begin{algorithme}
+
+\procedure
+{decoder}
+{\paramEntreeSortie{dest : Fichier Biniare }\paramEntree{arbre : Arbre de Huffman, source : Fichier Binaire, longueur : \naturel}}
+{bitRestant, i : \naturel, o : octet, cTemp, code : Code Biniare}
+{
+\affecter{bitRestant}{longueur}
+\affecter{cTemp}{CBcreerCodeBinaireVide()}
+\affecter{code}{CBcreerCodeBinaireVide()}
+\tantque{non (FBfinFichier(source)) ET FBlireOctet(source,o) ET (bitRestants>0))}
+{
+\affecter{cTemp}{octet\_en\_CB(o)}
+\instruction{CBconcatener(code,cTemp)}
+\tantque{(CBobtenirLongueur(code)$\geq$NBMAXBITS) ET (bitRestants$>$0)}
+{
+\instruction{traiterCodeBinaire(code,o,bitRestants,arbre)}
+\instruction{FBecrireOctet(dest,o)}
+}
+}
+}
+
+
+\procedure
+{traiterCodeBinaire}
+{\paramEntreeSortie{code : Code Binaire, oct : octet, nb : \naturel}\paramEntree{arbre : Arbre de Huffman}}
+{i, l : \naturel, aTemp : Arbre de Huffman}
+{
+\affecter{l}{ CBobtenirLongueur(code)}
+\affecter{aTemp}{arbre}
+\sialors{l>nb}
+{
+\pour{i}{l}{nb}{}
+{
+\instruction{CBsupprimerBit(code,i)}
+}}
+\tantque{non ADHestUneFeuille(atemp)}
+{
+\affecter{nb}{nb -1}
+\sialorssinon{bitEgaux(CBobtenirBit(code,b0)}
+{
+\affecter{aTemp}{ADHobtenirFilsGauche(atemp)}
+}
+{
+\affecter{aTemp}{ADHobtenirFilsDroit(atemp)}
+}
+\instruction{CBsupprimerTete(code)}
+}
+\instruction{copierOctet(ADHobtenirPere(atemp).valeurOctet,oct)}
+}
+
+\fonction
+{octetEnCB}
+{oct : octet}
+{Code Binaire}
+{i : \naturel, res : Code Binaire}
+{
+\affecter{i}{0}
+\affecter{res}{CBcreerCodeBinaireVide()}
+\pour{i}{0}{8}{}
+{
+\instruction{CBajouterAlaFin(res,obteniriemeBit(oct,i))}
+}
+\retourner{res}
+}
+\end{algorithme}

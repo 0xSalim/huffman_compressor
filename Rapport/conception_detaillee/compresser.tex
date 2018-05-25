@@ -1,0 +1,28 @@
+
+%compresser
+
+\begin{algorithme}
+\procedure
+{compresser}
+{\paramEntree{fichierSource : FichierBinaire, }\paramEntreeSortie{dest : FichierBinaire}}
+{stats : statistiques, tdc : Table de Codage}
+{
+\instruction{FB\_deplacerCurseur(ficSource,0)}
+\instruction{FB\_deplacerCurseur(dest,0)}
+\affecter{stats}{genererStats(ficSource)}
+\affecter{tdc}{genererTableDeCodageAPartirDeStats(stats)}
+\instruction{FB\_deplacerCurseur(ficSource,0)}
+\instruction{ecrireFichierAvecEnTete(ficSource, dest, tdc,stats)}
+}
+
+\procedure
+{ecrireFichierAvecEnTete}
+{\paramEntree{ficSource : FichierBinaire, tdc : Table De Codage, stats : Statistiques}
+\paramEntreeSortie{ficDestination : FichierBinaire}}
+{nb : \entier}
+{
+\instruction{ecrireEnTete(ficDestination,stats)}
+\instruction{ecrireCodeBinaire(ficDestination,ficSource,tdc,nb)}
+\instruction{FB\_ecrireGrosNaturel(ficDestination,nb)}
+}
+\end{algorithme}

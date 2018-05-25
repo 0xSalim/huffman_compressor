@@ -1,0 +1,107 @@
+
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[paperwidth=18cm]{geometry}
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{5}
+\usepackage{babel}
+\makeatletter
+\addto\extrasfrench{
+   \providecommand{\og}{\leavevmode\flqq~}
+   \providecommand{\fg}{\ifdim\lastskip>\z@\unskip\fi~\frqq}
+}
+
+\makeatother
+\usepackage{float}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=true,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=false]
+ {hyperref}
+
+\makeatletter
+
+\usepackage{algorithme}
+
+
+\usepackage{pgf}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[C]{\sectiontitle}
+\fancyhead[R]{\includegraphics[scale=0.1]{logo.jpg}}
+\lhead{Algorithmique : Projet Huffman}
+\cfoot{\thepage}
+\rfoot{\today}
+\lfoot{Groupe 2.5}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\usepackage{minted}
+\usepackage{caption}
+\usepackage{color}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\newmintedfile[cc]{c}{linenos=true,mathescape,bgcolor=bg}
+
+
+\usepackage{graphicx}
+
+\makeatother
+
+\begin{document}
+\input{pageDeGarde.tex}
+
+\newpage
+
+\tableofcontents{}
+
+\newpage
+
+\part{Introduction}
+
+\input{introduction.tex}
+
+\newpage
+
+\part{Analyses}
+
+\input{analyses.tex}
+
+\newpage
+
+\part{Conception préliminaire}
+
+\input{conception_preli.tex}
+
+\newpage
+
+\part{Conception détaillée}
+
+\input{conception_detaillee.tex}
+
+\newpage
+
+\part{Code et Tests Unitaires}
+
+\input{implementation/implementation.tex}
+
+\newpage
+
+\part{Travail de groupe }
+
+\input{travailDeGroupe.tex}
+
+\newpage
+
+\part{Conclusion}
+
+\input{conclusion.tex}
+
+\section{Répartition des taches :}
+
+\input{RepartitionDesTaches.tex}
+\end{document}

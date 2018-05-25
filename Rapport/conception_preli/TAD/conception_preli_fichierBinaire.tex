@@ -1,0 +1,60 @@
+ \begin{algorithme}
+
+\signaturefonction 
+{fichierBinaire}
+{c : Chaine}
+{fichierBinaire}
+
+\signaturefonction
+{ouvrir}
+{chaine, FBmode}
+{fichierBinaire}
+
+\signatureprocedure
+{fermer}
+{\paramEntreeSortie{f : FichierBinaire}}
+
+\signaturefonction
+{estOuvert}
+{f: FichierBinaire}
+{\booleen}
+
+\signaturefonction
+{mode}
+{f: FichierBinaire}
+{Mode}
+
+\signaturefonction
+{finFichier}
+{f: FichierBinaire}
+{\booleen}
+
+\signatureprocedure
+{ecrireOctet}
+{\paramEntreeSortie{f : FichierBinaire} ; \paramEntree{o : Octet}}
+
+\signatureprocedure
+{lireOctet}
+{\paramEntreeSortie{f : FichierBinaire} ; \paramSortie{o : Octet}}
+
+\signatureprocedure
+{ecrireNaturel}
+{\paramEntreeSortie{f : FichierBinaire} ; \paramEntree{a : Naturel}}
+
+\signatureprocedure
+{lireNaturel}
+{\paramEntreeSortie{f : FichierBinaire} ; \paramSortie{a :  Naturel}}
+
+\signatureprocedure
+{ecrireCaractere}
+{\paramEntreeSortie{f : FichierBinaire} ; \paramEntree{c : \caractere}}
+
+\signatureprocedure
+{lireCaractere}
+{\paramEntreeSortie{f : FichierBinaire} ; \paramSortie{c : \caractere}}
+
+\signatureprocedure
+{deplacerCurseurPourTrouverTaille}
+{\paramEntreeSortie{f : FichierBinaire}}
+
+\end{algorithme}

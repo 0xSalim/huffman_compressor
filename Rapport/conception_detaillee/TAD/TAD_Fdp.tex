@@ -1,0 +1,32 @@
+\begin{algorithme}
+
+\procedure{FDP\_insererItem}
+{\paramEntree{item : ADH\_arbreDeHuffman,param : \Booleen}
+\paramEntreeSortie{file : FDP\_FileDePriorite}}
+{tmp : FDP\_FileDePriorite}
+{
+\sialorssinon{param}
+{
+	\sialorssinon{FDP.estVide(file) ou (FDPobtenirTete(file)->Racine.ponderation$>$item->Racine.ponderation)}
+	{
+        \instruction{LC\_ajouter(file, item)}
+    }
+    {
+        \affecter{tmp}{LC\_obtenirListeSuivante(file)}
+        \instruction{FDP\_insererItem(item,tmp, param)}
+        \instruction{LC\_fixerListeSuivante(file, tmp)}
+    }
+}
+{
+\sialorssinon{FDP.estVide(file) ou (FDPobtenirTete(file)->Racine.ponderation$\geq$item->Racine.ponderation)}
+{
+\instruction{LC\_ajouter(file, item)}
+}
+{
+\affecter{tmp}{LC\_obtenirListeSuivante(file)}
+\instruction{FDP\_insererItem(item,tmp, param)}
+\instruction{LC\_fixerListeSuivante(file, tmp)}
+}
+}
+}
+\end{algorithme}

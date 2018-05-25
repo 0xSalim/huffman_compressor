@@ -1,0 +1,48 @@
+\begin{algorithme}
+
+\procedure{FB\_ecrireOctet}
+{\paramEntree{o: Octet}
+\paramEntreeSortie{f : FichierBinaire}}
+{valeur : Entier}
+{
+	\affecter{valeur}{octetEnDecimal(o)}
+	\instruction{ecrire(valeur, f)}
+}
+
+\fonction{FB\_lireOctet}
+{f : FichierBinaire}
+{Octet}
+{o : Octet, i : Entier}
+{
+	\instruction{lire(i, taille(octet),f}
+	\affecter{o}{decimalEnOctet(i)}
+	\retourner{o}
+}
+
+\procedure{FB\_ecrireChaine}
+{\paramEntree{c: Chaîne de Caractères}
+\paramEntreeSortie{f : FichierBinaire}}
+{i : Entier}
+{
+	\pour{i}{0}{longueur(c)-1}{}
+	{
+		\instruction(FB\_ecrireCaractere(f, chaine[i]))
+	}
+}
+
+\fonction{FB\_lireChaine}
+{f : FichierBinaire, n : Entier}
+{Chaîne de Caractères}
+{resultat : Chaîne de Caractères, i : Entier}
+{
+	\affecter{i}{0}
+	\tantque{i<=(n-1) ET non(FB\_finFichier(f)) ET  FB\_lireCaractere(f, resultat))}
+	{
+		\affecter{i}{i+1}
+	}
+	\affecter{resultat[i+1]}{'0'}
+	\retourner{resultat}
+}
+
+\end{algorithme}
+

@@ -1,0 +1,24 @@
+%recupererEnTete
+
+\begin{algorithme}
+
+
+\fonction{recupererEnTete}
+{fic : FichierBinaire ,copierDonneeNoeud: CLC\_FonctionCopier ,comparerDonneeNoeud: CLC\_FonctionComparer }
+{enTete}
+{monEnTete : enTete, tailleFichier : int, codeIdentification : octet , Statistiques : S\_Statistiques ;}
+{
+  \affecter{codeIndentification}{recupererCodeIdentification(fic)}
+  \affecter{tailleFichier}{recupererLongueur(fic)}
+  \affecter{Statistiques}{recupererStatistiques(fic,copierDonneeNoeud,comparerDonneeNoeud)}
+  \affecter{monEnTete.lesStats}{Statistiques}
+  \affecter{monEnTete.longueurFichierCompresse}{tailleFichier}
+  \affecter{monEnTete.codeId}{codeIndentification}
+  \retourner{stats}
+  }
+  \end{algorithme}
+  
+  
+\begin{algorithme}
+
+

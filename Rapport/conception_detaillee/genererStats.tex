@@ -1,0 +1,30 @@
+%genererStats
+
+\begin{algorithme}
+
+
+\fonction{genererStats}
+{source : FichierBinaire}
+{S\_Statistiques}
+{octetTemp : Octet, stats : S\_Statistiques, i : int ;}
+{
+  \affecter{stats}{S\_creerVide()}
+  \instruction{FB\_deplacerCurseur(source, 0)}
+  \tantque{non(FB\_finFichier(source)) et FB\_lireOctet(source, octetTemp)}
+      {
+      \sialorssinon{S\_estPresent(stats,octetTemp,SDNAD\_comparerDonneeNoeud))}{
+     	 \instruction{S\_ajouterItem(stats, octetTemp, 1, SDNAD\_copierDonneeNoeud, SDNAD\_comparerDonneeNoeud)}
+		
+      }
+      {
+      \instruction{S\_fixerOccurencesItem(stats,octetTemp,S\_nombreOccurencesItem(stats, octetTemp, SDNAD\_comparerDonneeNoeud)+1, SDNAD\_copierDonneeNoeud, SDNAD\_desallouerDonneeNoeud, SDNAD\_comparerDonneeNoeud)}
+		\instruction{i++}
+      
+      }
+      
+      
+  \retourner{stats}
+}
+}
+\end{algorithme}
+

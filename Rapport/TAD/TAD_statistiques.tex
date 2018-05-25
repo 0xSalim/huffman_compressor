@@ -1,0 +1,35 @@
+\begin{tad}
+	\tadNom{Statistiques}
+	\tadParametres{Item}
+	\tadDependances{\booleen,\nature, octetl}
+	\begin{tadOperations}{Statistiques}
+		\tadOperation{creerVide}{}{\tadUnParam{Statistiques}}
+		\tadOperation{estVide}{\tadUnParam{Statistiques}}{\tadUnParam{Bool�en}}
+		\tadOperation{creerDonneeNoeud}{\tadDeuxParams{Octet}{\naturel}}{\tadUnParam{donneeNoeud}}
+		\tadOperation{obtenirLesStats}{\tadUnParam{Statistiques}}{\tadUnParam{Liste cha�n�e}}
+		\tadOperation{ajouterDonneeNoeud}{\tadDeuxParams{Statistiques}{donneeNoeud}}{\tadUnParam{Statistiques}}
+		\tadOperation{obtenirDonneeNoeud}{\tadUnParam{Statistiques}}{\tadUnParam{donneeNoeud}}
+		\tadOperation{estPresent}{\tadDeuxParams{Statistiques}{Octet}}{\tadUnParam{Bool�en}}
+		\tadOperation{fixerLesStats}{\tadDeuxParams{Statistiques}{Liste Cha�n�e}}{\tadUnParam{Statistiques}}
+		\tadOperation{obtenirPonderation}{\tadUnParam{donneeNoeud}}{\tadUnParam{\naturel}}
+		\tadOperation{obtenirTaille}{\tadUnParam{Statistiques}}{\tadUnParam{\naturel}}
+		\tadOperationAvecPreconditions{nombreOccurencesItem} {\tadDeuxParams{Statistiques}{Octet}} {\tadUnParam{Naturel Non Nul}}
+		\tadOperationAvecPreconditions{fixerOccurenceItem}{\tadTroisParams{Statistiques}{Octet}{Naturel Non Nul}} {\tadUnParam{Statistiques}}
+		\tadOperation{supprimerTete}{\tadUnParam{Statistiques}}{\tadUnParam{Statistiques}}
+		\tadOperationAvecPreconditions{ajouterItem}{\tadDeuxParams{Statistiques}{Octet}{\naturel}}{\tadUnParam{Statistiques}}
+		\tadOperation{ajouterItemALaFin}{\tadDeuxParams{Octet}{\naturel}}{\tadUnParam{Statistiques}}
+		\tadOperation{obtenirOctet}{\tadUnParam{Statistiques}}{\tadUnParam{Octet}}
+		\end{tadOperations}
+	\begin{tadSemantiques}{Statistiques}
+		\tadSemantique{estPresent}{Indique si l'item est pr�sent dans les statistiques ou non. Il peut �tre pr�sent mais avec un nombre d'occurences de 0.}
+		\tadSemantique{obtenirOctet}{Renvoie l'item qui a �t� ajout� en n-i�me}
+		
+	\end{tadSemantiques}
+	\begin{tadPreconditions}{}
+		\tadPrecondition{nombreOccurencesItem(s,i)}{estPr�sent(s,i) et non(estVide(obtenirLesStats(s)))}
+		\tadPrecondition{fixerOccurencesItem(s,i,n)}{estPr�sent(s,i) et non(estVide(obtenirLesStats(s)))}
+		\tadPrecondition{ajouterItem(s,i)}{non(estPr�sent(s,i))}
+	\end{tadPreconditions}
+\end{tad}
+
+

@@ -1,0 +1,13 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+
+#include "estCompresse.h"
+
+
+int estCompres(FichierBinaire* fic,CLC_FonctionCopier copierDonneNoeud,CLC_FonctionComparer comparerDonneNoeud){
+	octet bonCode=genererBonCode();
+	octet codeFic=recupererCodeIdentification(*fic);
+	return octetEgaux(codeFic,bonCode);
+}
+
+\end{minted}
+ 

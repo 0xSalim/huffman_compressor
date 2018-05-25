@@ -1,0 +1,45 @@
+
+%genererADH
+
+\begin{algorithme}
+
+
+\fonction
+{genererArbreDeHuffman}
+{file : FileDePriorite,copierArbre :FonctionCopier}
+{ADH\_arbreDeHuffman}
+{res, aTemp : ADH\_arbreDeHuffman}
+{
+  \instruction{genererArbreRecursivement(file, copierArbre)}
+  \affecter{res}{FDP\_obtenirTete(file)}
+  \affecter{aTemp}{copierArbre(res)}
+  \retourner{obtenirTete(file)}
+}
+
+\procedure
+{genererArbreRecursivement}
+{\paramEntree{file : fileDePriorite, copierArbre : FonctionCopier}}
+{a1,a2, aTemp : arbreDeHuffman, param : \booleen}
+{
+\affecter{param}{VRAI}
+\sialors{non FDP\_estVide(file) }
+{
+\affecter{aTemp}{FDP\_obtenirTete(file)}
+\affecter{a1}{copierArbre(aTemp)}
+\instruction{FDP\_defiler(file,desallouerArbre)}
+\sialorssinon{non FDP\_obtenirTete(file)}
+{
+\affecter{aTemp}{FDP\_obtenirTete(file)}
+\affecter{a2}{copierArbre(aTemp)}
+\instruction{FDP\_defiler(file,desallouerArbre)}
+\affecter{a}{fusionnerArbreDeHuffman(a1,a2)}
+\instruction{FDP\_insererItem(a, file,param)}
+\instruction{genererArbreRecursivement(file,arbre,copierArbre)}
+}
+{
+\instruction{FDP\_insererItem(a1, file,param)}
+}
+}
+
+}
+\end{algorithme}

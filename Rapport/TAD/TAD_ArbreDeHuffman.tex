@@ -1,0 +1,28 @@
+\begin{tad}
+	\tadNom{ArbreDeHuffman}
+	\tadParametres{Element}
+	\tadDependances{Booleen}
+	\begin{tadOperations}{Arbre de Huffman}
+		\tadOperation{creerArbreDeHuffmanVide}{}{\tadUnParam{ArbreDeHuffman}}
+		\tadOperation{creerArbreDeHuffman}{\tadDeuxParams{Octet}{Naturel}}{\tadUnParam{ArbreDeHuffman}}
+		\tadOperation{estUneFeuille}{\tadUnParam{ArbreDeHuffman}}{\tadUnParam{Booleen}}
+		\tadOperation{estVide}{\tadUnParam{ArbreDeHuffman}}{\tadUnParam{\booleen}}
+		\tadOperationAvecPreconditions{obtenirPere}{\tadUnParam{ArbreDeHuffman}}{\tadUnParam{Element}}
+		\tadOperationAvecPreconditions{obtenirFilsGauche}{\tadUnParam{ArbreDeHuffman}}{\tadUnParam{ArbreDeHuffman}}
+		\tadOperationAvecPreconditions{obtenirFilsDroit}{\tadUnParam{ArbreDeHuffman}}{\tadUnParam{ArbreDeHuffman}}
+		\tadOperation{fusionnerArbreDeHuffman}{\tadDeuxParams{ArbreDeHuffman}{ArbreDeHuffman}}{\tadUnParam{ArbreDeHuffman}}
+		\tadOperation{comparerArbreDeHuffman}{\tadDeuxParams{ArbreDeHuffman}{ArbreDeHuffman}}{\tadUnParam{Booleen}}
+	\end{tadOperations}
+	\begin{tadSemantiques}{}
+		\tadSemantique{obtenirPere}{Retourne l'élement présent dans l'arbre (ne remonte pas d'un cran!)}
+		\end{tadSemantiques}
+	\begin{tadAxiomes}
+		\tadAxiome{estUneFeuille(CreerArbreHuffman())=Vrai}
+	\end{tadAxiomes}
+	
+	\begin{tadPreconditions}{}
+		\tadPrecondition{obtenirFilsGauche(a)}{non(estUneFeuille(a))}
+		\tadPrecondition{obtenirFilsDroit(a)}{non(estUneFeuille(a)))}
+		\tadPrecondition{obtenirRacine(a)}{non(estVide(a))}
+	\end{tadPreconditions}
+\end{tad}

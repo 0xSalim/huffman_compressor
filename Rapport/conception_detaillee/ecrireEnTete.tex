@@ -1,0 +1,65 @@
+
+%ecrireEnTete
+\begin{algorithme}
+
+\procedure
+{ecrireEnTete}
+{\paramEntreeSortie{fichierCompresse : FichierBinaire}
+\paramEntree{statistique : Statistiques}}
+{}
+{
+\instruction{B\_deplacerCurseur(fichierCompresse,0)}
+\instruction{ecrireCodeIdentification(fichierCompresse)}
+\instruction{ecrireStatistiques(fichierCompresse, statistique)}
+}
+
+\fonction
+{genererBonCode}
+{}
+{octet}
+{codeIdentification : octet}
+{
+\affecter{codeIdentification}{creerOctet()}
+\instruction{fixeriemeBit(codeIdentification,0,b1)}
+\instruction{fixeriemeBit(codeIdentification,7,b1)}
+\retourner{codeIdentification}
+}
+
+\procedure
+{ecrireTaille}
+{\paramEntreeSortie{fichierCompresse : FichierBinaire, }
+\paramEntree{taille : \entier}}
+{}
+{
+\instruction{FB\_ecrireNaturel(fichierCompresse, taille)}
+}
+
+
+\procedure
+{ecrireCodeIdentification}
+{\paramEntreeSortie{fichierCompresse : FichierBinaire}}
+{codeIdentification : octet}
+{
+\affecter{codeIdentification}{genererBonCode()}
+\instruction{FB\_ecrireOctet(fichierCompresse, codeIndentification)}
+}
+
+\procedure
+{ecrireStatistiques}
+{\paramEntreeSortie{fichierCompresse : FichierBinaire, }
+\paramEntree{statistique : statistiques}}
+{donneeNoeud : S\_donneeNoeud, tailleStat : \entier}
+{
+\affecter{tailleStat}{S\_obtenirTaille(temp)}
+\instruction{FB\_ecrireNaturel(fichierCompresse,tailleStat)}
+\tantque{non S\_estVide(statistiques)}
+{
+\affecter{donneeNoeud}{S\_obtenirDonneeNoeud(temp)}
+\instruction{FB\_ecrireOctet(fichierCompresse, donneeNoeud.loctet)}
+\instruction{FB\_ecrireNaturel(fichierCompresse,donneeNoeud.ponderation)}
+\instruction{S\_supprimerTete(statistiques,desallouerDonneeNoeud)}
+}
+}
+
+
+\end{algorithme}

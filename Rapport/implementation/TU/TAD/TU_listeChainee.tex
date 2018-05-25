@@ -1,0 +1,12 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+ void test_LC_estVide(void)
+{
+  LC_ListeChainee l= LC_ListeChaineeVide();
+	CU_ASSERT_TRUE(LC_estVide(l));
+
+	LC_supprimer(&l,BAD_desallouerBit);
+}
+
+
+\end{minted}
+ 

@@ -1,0 +1,68 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+#include "arbreDeHuffman.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+#define TRUE 1
+#define FALSE 0
+#define estSup 1
+#define estInf 0
+
+ADH_arbreDeHuffman ADH_creerArbreDeHuffmanVide(){
+	return NULL;
+}
+
+ADH_Racine ADH_creerRacine(octet octetAAjoute, int ponderation){
+	ADH_Racine racine;
+	racine.Racine.ponderation=ponderation;
+	copierOctet(octetAAjoute,&(racine.Racine.valeurOctet));
+	racine.filsDroit=ADH_creerArbreDeHuffmanVide();
+	racine.filsGauche=ADH_creerArbreDeHuffmanVide();
+	return racine;
+}
+
+int ADH_estVide(ADH_arbreDeHuffman a){	
+		return a==NULL;
+}
+
+int ADH_estUneFeuille(ADH_arbreDeHuffman a){
+	assert(ADH_estVide(a)!=TRUE);
+	if (a->filsDroit != NULL && a->filsGauche !=NULL)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+ADH_valeurRacine ADH_obtenirPere(ADH_arbreDeHuffman a){
+	assert(ADH_estVide(a)!=TRUE);
+	return a->Racine;
+}
+
+ADH_arbreDeHuffman ADH_obtenirFilsDroit(ADH_arbreDeHuffman a){
+	assert(ADH_estUneFeuille(a) == FALSE);
+	return a->filsDroit;
+}
+
+ADH_arbreDeHuffman ADH_obtenirFilsGauche(ADH_arbreDeHuffman a){
+	assert(ADH_estUneFeuille(a) == FALSE);
+	return a->filsGauche;
+}
+
+ADH_Racine ADH_fusionnerArbreDeHuffman(ADH_arbreDeHuffman arbre1,ADH_arbreDeHuffman arbre2){
+	ADH_Racine arbreRes;
+	arbreRes = ADH_creerRacine(creerOctet(), arbre1->Racine.ponderation+arbre2-> Racine.ponderation);
+	arbreRes.filsDroit = arbre1;
+	arbreRes.filsGauche = arbre2;	
+	return arbreRes;
+}
+
+int ADH_comparerArbreDeHuffman(ADH_arbreDeHuffman arbre1, ADH_arbreDeHuffman arbre2){
+	
+	if(arbre1->Racine.ponderation >= arbre2->Racine.ponderation)
+		return estSup;
+	else
+		return estInf;
+}
+\end{minted}
+ 

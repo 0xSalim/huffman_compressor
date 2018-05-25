@@ -1,0 +1,36 @@
+ \begin{tad}
+	\tadNom{FichierBinaire}
+	\tadDependances{\chaine,\booleen, FBmode, Octet, Naturel}
+	\begin{tadOperations}{}
+		\tadOperation{fichierBinaire}{\tadUnParam{\chaine}}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{ouvrir}{\tadDeuxParams{\chaine}{FBmode}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{fermer}{\tadUnParam{FichierBinaire}}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{finFichier}{\tadUnParam{FichierBinaire}}{\tadUnParam{\booleen}}
+		\tadOperationAvecPreconditions{ecrireOctet}{\tadDeuxParams{FichierBinaire}{Octet}}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{lireOctet}{\tadUnParam{FichierBinaire}}{\tadDeuxParams{FichierBinaire}{Octet}}
+		\tadOperationAvecPreconditions{ecrireNaturel}{\tadDeuxParams{FichierBinaire}{Naturel}}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{lireNaturel}{\tadUnParam{FichierBinaire}}{\tadDeuxParams{FichierBinaire}{Naturel}}
+		\tadOperationAvecPreconditions{ecrireGrosNaturel}{\tadDeuxParams{FichierBinaire}{Naturel}}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{lireGrosNaturel}{\tadUnParam{FichierBinaire}}{\tadDeuxParams{FichierBinaire}{Naturel}}
+		\tadOperationAvecPreconditions{ecrireCaractere}{\tadDeuxParams{FichierBinaire}{Caractere}}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{lireGrosNaturel}{\tadUnParam{FichierBinaire}}{\tadDeuxParams{FichierBinaire}{Caractere}}
+		\tadOperationAvecPreconditions{ecrireChaine}{\tadDeuxParams{FichierBinaire}{Chaine}}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{lireChaine}{\tadUnParam{FichierBinaire}}{\tadDeuxParams{FichierBinaire}{Chaine}}
+		\tadOperationAvecPreconditions{deplacerCurseur}{\tadDeuxParams{FichierBinaire}{Naturel}}{\tadUnParam{FichierBinaire}}
+		\tadOperationAvecPreconditions{deplacerCurseurPourTrouverTaille}{\tadUnParam{FichierBinaire}}{\tadUnParam{FichierBinaire}}
+
+
+	\end{tadOperations}
+
+	\begin{tadSemantiques}{}
+		\tadSemantique{fichierBinaire}{creation d'un fichier binaire}
+		\tadSemantique{ouvrir}{ouvre un fichier binaire en mode lecture ou ecriture}
+		\tadSemantique{fermer}{ferme un fichier binaire}
+		\tadSemantique{lire...}{lit un type de donnee a la position du curseur}
+		\tadSemantique{ecrire...}{ecrit un type de donnee a la position du curseur}
+	\end{tadSemantiques}
+	
+
+	
+\end{tad}
+

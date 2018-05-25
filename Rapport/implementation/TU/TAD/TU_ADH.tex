@@ -1,0 +1,131 @@
+\begin{minted}[breaklines=true,linenos=true,mathescape,bgcolor=bg]{c}
+void TU_creerADH_arbreDeHuffman(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre=ADH_creerArbreDeHuffman(o, 5);
+    CU_ASSERT_TRUE(!ADH_estVide(arbre) && (ADH_obtenirPere(arbre).ponderation==5) && octetEgaux(creerOctet(),ADH_obtenirPere(arbre).valeurOctet));
+	ADH_supprimerArbre(&arbre);
+}
+void TU_estVide_casVide(){
+    ADH_arbreDeHuffman arbre=ADH_creerArbreDeHuffmanVide();
+    CU_ASSERT_TRUE(ADH_estVide(arbre));
+     ADH_supprimerArbre(&arbre);
+}
+void TU_estVide_casNonVide(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre=ADH_creerArbreDeHuffman(o,5);
+    CU_ASSERT_TRUE(!(ADH_estVide(arbre)));
+     ADH_supprimerArbre(&arbre);
+}
+void TU_estUneFeuille_casFeuille(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre=ADH_creerArbreDeHuffman(o,5);
+    CU_ASSERT_TRUE(ADH_estUneFeuille(arbre));
+     ADH_supprimerArbre(&arbre);
+}
+void TU_estUneFeuille_casNonFeuille(){
+    ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(creerOctet(),5);
+    ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(creerOctet(),6);
+    ADH_arbreDeHuffman arbre_resultat=ADH_fusionnerArbreDeHuffman(arbre1,arbre2);
+    CU_ASSERT_TRUE(!(ADH_estUneFeuille(arbre_resultat)));
+	ADH_supprimerArbre(&arbre_resultat);
+}
+void TU_obtenirPere(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre=ADH_creerArbreDeHuffman(o, 5);
+    ADH_valeurRacine pere=ADH_obtenirPere(arbre);
+    CU_ASSERT_TRUE((pere.ponderation==5) && octetEgaux(pere.valeurOctet,creerOctet()));
+    ADH_supprimerArbre(&arbre);
+}
+void TU_obtenirFilsDroit(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(o,5);
+    ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(o,3);
+    ADH_arbreDeHuffman arbre_resultat=ADH_fusionnerArbreDeHuffman(arbre1,arbre2);
+    CU_ASSERT_TRUE(ADH_obtenirFilsDroit(arbre_resultat)==arbre1);
+	ADH_supprimerArbre(&arbre_resultat);
+}
+void TU_obtenirFilsGauche(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(o,5);
+    ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(o,3);
+    ADH_arbreDeHuffman arbre_resultat=ADH_fusionnerArbreDeHuffman(arbre1,arbre2);
+    CU_ASSERT_TRUE(ADH_obtenirFilsGauche(arbre_resultat)==arbre2);
+	ADH_supprimerArbre(&arbre_resultat);
+}
+void TU_fusionner(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(o,5);
+    ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(o,3);
+    ADH_arbreDeHuffman arbre_resultat=ADH_fusionnerArbreDeHuffman(arbre1,arbre2);
+    CU_ASSERT_TRUE((ADH_obtenirFilsGauche(arbre_resultat)==arbre2) && (ADH_obtenirFilsDroit(arbre_resultat) ==arbre1));
+	ADH_supprimerArbre(&arbre_resultat);
+}
+void TU_comparer_casEgaux(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(o,5);
+    ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(o,3);
+    ADH_arbreDeHuffman arbre5=ADH_creerArbreDeHuffman(o,3);
+    ADH_arbreDeHuffman arbre6=ADH_creerArbreDeHuffman(o,5);
+    ADH_arbreDeHuffman arbre3=ADH_fusionnerArbreDeHuffman(arbre1,arbre2);
+    ADH_arbreDeHuffman arbre4=ADH_fusionnerArbreDeHuffman(arbre6,arbre5);
+    int i=ADH_comparerArbreDeHuffman(arbre3,arbre4);
+    CU_ASSERT_TRUE(i!=0);
+	ADH_supprimerArbre(&arbre3);
+	ADH_supprimerArbre(&arbre4);
+}
+void TU_comparer_casNonEgaux(){
+    octet o=creerOctet();
+    ADH_arbreDeHuffman arbre1=ADH_creerArbreDeHuffman(o,5);
+    ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(o,3);
+    ADH_arbreDeHuffman arbre6=ADH_creerArbreDeHuffman(o,3);
+    ADH_arbreDeHuffman arbre3=ADH_creerArbreDeHuffman(o,1);
+    ADH_arbreDeHuffman arbre4=ADH_fusionnerArbreDeHuffman(arbre1,arbre2);
+    ADH_arbreDeHuffman arbre5=ADH_fusionnerArbreDeHuffman(arbre6,arbre3);
+    int i=ADH_comparerArbreDeHuffman(arbre5,arbre4);
+    CU_ASSERT_TRUE(i==0);
+	ADH_supprimerArbre(&arbre4);
+	ADH_supprimerArbre(&arbre5);
+    
+}
+
+void TU_supprimerPere_casFeuille(){
+		octet o=creerOctet();
+		ADH_arbreDeHuffman arbre2,arbre3,arbre1=ADH_creerArbreDeHuffman(o,5);
+		ADH_supprimerPere(&arbre1,&arbre2,&arbre3);
+		CU_ASSERT_TRUE(ADH_estVide(arbre2) && ADH_estVide(arbre3));
+	}
+	
+void TU_supprimerPere_casGeneral(){
+		octet o=creerOctet();
+		
+		ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(o,5);
+		ADH_arbreDeHuffman arbre3=ADH_creerArbreDeHuffman(o,5);
+		ADH_arbreDeHuffman arbre1=ADH_fusionnerArbreDeHuffman(arbre2,arbre3);
+		ADH_arbreDeHuffman arbre4=ADH_creerArbreDeHuffmanVide();
+		ADH_arbreDeHuffman arbre5=ADH_creerArbreDeHuffmanVide();
+		ADH_supprimerPere(&arbre1,&arbre4,&arbre5);
+		CU_ASSERT_TRUE(ADH_comparerArbreDeHuffman(arbre2,arbre4) && ADH_comparerArbreDeHuffman(arbre3,arbre5));
+		ADH_supprimerArbre(&arbre2);
+		ADH_supprimerArbre(&arbre3);
+	}
+	
+void TU_supprimer_casFeuille(){  /// A regarder avec valgrind
+		octet o=creerOctet();
+		
+		ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(o,5);
+		ADH_supprimerArbre(&arbre2);
+		CU_ASSERT_TRUE(1);
+	}
+	
+void TU_supprimer_casGeneral(){  /// A regarder avec valgrind
+		octet o=creerOctet();
+		
+		ADH_arbreDeHuffman arbre2=ADH_creerArbreDeHuffman(o,5);
+		ADH_arbreDeHuffman arbre3=ADH_creerArbreDeHuffman(o,5);
+		ADH_arbreDeHuffman arbre1=ADH_fusionnerArbreDeHuffman(arbre2,arbre3);
+		ADH_supprimerArbre(&arbre1);
+		CU_ASSERT_TRUE(1);
+	}
+
+\end{minted}
+ 
